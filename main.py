@@ -12,7 +12,8 @@ JOBS = [
   {
     'id':2,
     'title':"Cloud Engineer",
-    "location":"Delhi"
+    "location":"Delhi",
+    "Salary": "INR 4-5 Lacs"
   },
   {
     'id':3,
