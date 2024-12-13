@@ -12,18 +12,25 @@
     />
     <style>
       #banner {
-        width: 1800px;
-        height: 250px;
+        width: 100%;
+        max-width: 100%;
+        height: 220px;
         object-fit: cover;
-        text-align: center;
       }
     </style>
   </head>
   <body>
     {% include 'nav.html' %}
-    <img class="mx-auto d-block mb-4" id="banner" src="static/banner.jpeg" alt="Nothing" />
+    <img
+      class="img-fluid mx-auto d-block mb-4"
+      id="banner"
+      src="static/banner.jpeg"
+      alt="Nothing"
+    />
     <div class="container">
-      <h1 class="text-center mt-4 mb-4 border-bottom" style="color: cadetblue;">{{company_name}} Careers</h1>
+      <h1 class="text-center mt-4 mb-4 border-bottom" style="color: cadetblue">
+        {{company_name}} Careers
+      </h1>
       <h2 class="text-center">About Jovian</h2>
       <div class="row align-items-center">
         <!-- Text Column -->
@@ -43,22 +50,30 @@
           </p>
         </div>
         <div class="col-md-6 text-center">
-          <img src="/static/work_ofc.jpg" alt="Nothing" class="d-none d-md-block img-fluid rounded" style="height: 300px; margin-bottom: 16px; margin-top: 8px;" />
+          <img
+            src="/static/work_ofc.jpg"
+            alt="Nothing"
+            class="d-none d-md-block img-fluid rounded"
+            style="height: 300px; margin-bottom: 16px; margin-top: 8px"
+          />
         </div>
       </div>
       <h2 class="text-center mt-4">Job Openings</h2>
       <p>
         <!-- {{jobs}} -->
-        {% for job in jobs %} 
-            {% include 'jobitem.html' %} 
-        {% endfor %}
+        {% for job in jobs %} {% include 'jobitem.html' %} {% endfor %}
       </p>
     </div>
     <div class="text-center mt-4 md-4">
       <!-- <button class="btn btn-primary btn-lg">Contact Us</button> -->
-      <a type="button" href="https://google.com" target="_blank" class="btn btn-primary btn-lg">Contact Us</a>
+      <a
+        type="button"
+        href="https://google.com"
+        target="_blank"
+        class="btn btn-primary btn-lg"
+        >Contact Us</a
+      >
       {% include 'footer.html' %}
-
       <!-- <p class="mt-4">Copyright 2022, Luxembourg</p></div> -->
     </div>
   </body>
