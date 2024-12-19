@@ -1,7 +1,8 @@
 from flask import Flask, render_template, jsonify
+from database import load_jobs_from_db
 
 app = Flask(__name__)
-
+"""
 JOBS = [
   {
     'id':1,
@@ -22,14 +23,18 @@ JOBS = [
     "Salary": "INR 6-10 Lacs"
   }
 ]
+"""
+
+ 
 
 @app.route("/")
 def hello():
-  return render_template("home.html", jobs=JOBS, company_name="Jovian")
+  jobList = load_jobs_from_db()
+  return render_template("home.html", jobs=jobList, company_name="Jovian")
 
 @app.route("/api/jobs")
 def list_jobs():
-  return jsonify(JOBS)
+  return jsonify(load_jobs_from_db())
 
 if __name__ == "__main__":
   app.run(host="0.0.0.0", debug=True)
