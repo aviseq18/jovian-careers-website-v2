@@ -1,13 +1,22 @@
 from sqlalchemy import create_engine, text
+from dotenv import load_dotenv
+import os
 
-# engine = create_engine("mysql+pymysql://root:ORbjLslmAJFEZDVUCxZbrOXtciJJmXbP@junction.proxy.rlwy.net/joviancareers?host=junction.proxy.rlwy.net?port=18172")
-engine = create_engine("mysql+pymysql://root:ORbjLslmAJFEZDVUCxZbrOXtciJJmXbP@junction.proxy.rlwy.net:18172/joviancareers")
-# mysql://root:ORbjLslmAJFEZDVUCxZbrOXtciJJmXbP@junction.proxy.rlwy.net:18172/jovian
+dbConnString = os.getenv('DB_CONN_STR')
+engine = create_engine(dbConnString)
+# mysql://user:password@host/db_name
+
+def configure():
+  load_dotenv()
 
 def load_jobs_from_db():
+  configure()
   with engine.connect() as conn:
     result = conn.execute(text("select * from jobs"))
     jobs = []
     for row in result.all():
       jobs.append(row._asdict())
+    # print(jobs)
     return jobs 
+
+# load_jobs_from_db()    
