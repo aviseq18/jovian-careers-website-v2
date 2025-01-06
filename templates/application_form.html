@@ -1,0 +1,33 @@
+<div class="text-center"><b>Application Form</b></div>
+<form action="/job/{{job['id']}}/apply" method="post" class="mt-4">
+  <div>
+    <label>Name: </label>
+    <input type="text" name="name" required placeholder="Abhishek Kumar" class="form-control" />
+  </div>
+  <div>
+    <label>Email: </label>
+    <input type="email" name="email" required placeholder="aviseq18@gmail.com" class="form-control" />
+  </div>
+  <div>
+    <label>LinkedIn: </label>
+    <input
+      type="url" name="linkedin" placeholder="https://www.linkedin.com/in/aviseq18/" class="form-control" />
+  </div>
+  <div>
+    <label>Education: </label>
+    <input
+      type="text" name="edu" placeholder="B.Tech in CSE from IIT Kharagpur" class="form-control"/>
+  </div>
+  <div>
+    <label>Work Experience: </label>
+    <input type="text" name="work" placeholder="2 years at Google" class="form-control"
+    />
+  </div>
+  <div>
+    <label>Resume Link: </label>
+    <input type="url"
+      name="resume" required placeholder="Resume" class="form-control" />
+  </div>
+  <br />
+  <button type="submit" class="btn btn-primary text-center">Submit</button>
+</form>

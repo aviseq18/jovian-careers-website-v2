@@ -1,5 +1,5 @@
-from flask import Flask, render_template, jsonify
-from database import load_jobs_from_db, load_job_from_db
+from flask import Flask, render_template, jsonify, request
+from database import load_jobs_from_db, load_job_from_db, add_application_to_db
 
 app = Flask(__name__)
 """
@@ -25,12 +25,12 @@ JOBS = [
 ]
 """
 
- 
+company_name = "Jovian" 
 
 @app.route("/")
 def hello():
   jobList = load_jobs_from_db()
-  return render_template("home.html", jobs=jobList, company_name="Jovian")
+  return render_template("home.html", jobs=jobList, company_name=company_name)
 
 @app.route("/api/jobs")
 def list_jobs():
@@ -41,7 +41,15 @@ def show_job(id):
   jobIdDetails = load_job_from_db(id)
   if not jobIdDetails:
     return "Not Found", 404
-  return render_template("jobpage.html", job=jobIdDetails, company_name = "Jovian")
+  return render_template("jobpage.html", job=jobIdDetails, company_name = company_name)
+
+@app.route("/job/<id>/apply", methods=["POST"])
+def apply_to_job(id):
+  # data = request.args
+  job = load_job_from_db(id)
+  data = request.form
+  add_application_to_db(id, data)
+  return render_template("application_submitted.html", job=job, data=data, company_name = company_name)
 
 if __name__ == "__main__":
   app.run(host="0.0.0.0",port="5000", debug=True)
